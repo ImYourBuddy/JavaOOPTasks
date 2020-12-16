@@ -44,11 +44,11 @@ public class MyComplex {
     }
 
     public boolean isReal() {
-        return Double.compare(imag, 0.0) == 0;
+        return Math.abs(real) < 0.000001;
     }
 
     public boolean isImaginary() {
-        return Double.compare(real, 0.0) == 0;
+        return Math.abs(imag) < 0.000001;
     }
 
     public boolean equals(double real, double imag) {
