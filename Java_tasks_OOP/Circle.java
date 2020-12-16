@@ -8,7 +8,7 @@ public class Circle {
     }
 
     public Circle(double radius) {
-        if (radius <= 0) {
+        if (Math.abs(radius) < 0.000001 || radius < 0) {
             throw new IllegalArgumentException("The radius should be > 0");
         } else {
             this.radius = radius;
@@ -16,11 +16,7 @@ public class Circle {
     }
 
     public Circle(double radius, String color) {
-        if (radius <= 0) {
-            throw new IllegalArgumentException("The radius should be > 0");
-        } else {
-            this.radius = radius;
-        }
+        this(radius);
         this.color = color;
     }
 
@@ -29,7 +25,7 @@ public class Circle {
     }
 
     public void setRadius(double radius) {
-        if (radius <= 0) {
+        if (Math.abs(radius) < 0.000001 || radius < 0) {
             throw new IllegalArgumentException("The radius should be > 0");
         } else {
             this.radius = radius;
