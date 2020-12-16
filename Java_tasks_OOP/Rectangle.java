@@ -8,14 +8,12 @@ public class Rectangle {
     }
 
     public Rectangle(float length, float width) {
-        if (length <= 0.0) {
+       if (Math.abs(length) < 0.000001 || length < 0.0) {
             throw new IllegalArgumentException("The length should be > 0");
-        } else {
-            this.length = length;
-        }
-        if (width <= 0.0) {
+        } else if (Math.abs(length) < 0.000001 || length < 0.0) {
             throw new IllegalArgumentException("The width should be > 0");
         } else {
+            this.length = length;
             this.width = width;
         }
     }
@@ -25,7 +23,7 @@ public class Rectangle {
     }
 
     public void setLength(float length) {
-        if (length <= 0) {
+        if (Math.abs(length) < 0.000001 || length < 0.0) {
             throw new IllegalArgumentException("The length should be > 0");
         } else {
             this.length = length;
@@ -37,7 +35,7 @@ public class Rectangle {
     }
 
     public void setWidth(float width) {
-        if (width <= 0.0) {
+        if (Math.abs(length) < 0.000001 || length < 0.0) {
             throw new IllegalArgumentException("The width should be > 0");
         } else {
             this.width = width;
