@@ -9,16 +9,14 @@ public class Employee {
     public Employee(int id, String firstName, String lastName, int salary) {
         if (id <= 0) {
             throw new IllegalArgumentException("Id should be > 0");
-        } else {
-            this.id = id;
-        }
-        if (salary < 0) {
+        } else if (salary < 0) {
             throw new IllegalArgumentException("Salary should be >= 0");
         } else {
+            this.id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
             this.salary = salary;
         }
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     public int getId() {
