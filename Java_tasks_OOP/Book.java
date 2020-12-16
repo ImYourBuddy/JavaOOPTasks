@@ -1,7 +1,5 @@
 package com.mycompany.firsttask.library;
 
-import java.util.Arrays;
-
 public class Book {
     private String name;
     private Author[] authors;
@@ -9,7 +7,7 @@ public class Book {
     private int qty = 0;
 
     public Book(String name, Author[] authors, double price) {
-        if (price < 0) {
+       if (price < 0) {
             throw new IllegalArgumentException("The price should be >= 0");
         } else {
             this.price = price;
@@ -19,18 +17,12 @@ public class Book {
     }
 
     public Book(String name, Author[] authors, double price, int qty) {
-        if (price < 0) {
-            throw new IllegalArgumentException("The price should be >= 0");
-        } else {
-            this.price = price;
-        }
+        this(name, authors, price);
         if (qty < 0) {
             throw new IllegalArgumentException("The qty should be >= 0");
         } else {
             this.qty = qty;
         }
-        this.name = name;
-        this.authors = authors;
     }
 
     public String getName() {
