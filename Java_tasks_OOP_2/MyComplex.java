@@ -1,5 +1,7 @@
 package com.mycompany.secondtask;
 
+import java.util.Objects;
+
 public class MyComplex {
     private double real = 0.0;
     private double imag = 0.0;
@@ -55,7 +57,11 @@ public class MyComplex {
         return (Math.abs(this.real - real) < 0.000001) && (Math.abs(this.imag - imag) < 0.000001);
     }
 
-    public boolean equals(MyComplex another) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyComplex another = (MyComplex) o;
         return equals(another.real, another.imag);
     }
 
