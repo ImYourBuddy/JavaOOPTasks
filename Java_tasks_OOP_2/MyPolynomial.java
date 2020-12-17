@@ -14,36 +14,28 @@ public class MyPolynomial {
     @Override
     public String toString() {
         StringBuilder polynomial = new StringBuilder();
-        if (coeffs.length == 1) {
-            polynomial.append(coeffs[0]);
-        } else if (coeffs.length == 2) {
-            polynomial.append(coeffs[1] + "x + " +coeffs[0]);
-        } else {
-            for (int i = coeffs.length - 1; i >= 0; i--) {
-                if (coeffs[i] >= 0) {
-                    if (i == 1) {
-                        polynomial.append("+" + coeffs[i] + 'x');
-                    } else if (i == 0) {
-                        polynomial.append("+" + coeffs[i]);
-                    } else if (i == coeffs.length - 1) {
-                        polynomial.append(coeffs[i] + "x^" + i);
-                    } else {
-                        polynomial.append("+" + coeffs[i] + "x^" + i);
-                    }
-                } else {
-                    if (i == 1) {
-                        polynomial.append(coeffs[i] + "x");
-                    } else if (i == 0) {
-                        polynomial.append(coeffs[i]);
-                    } else {
-                        polynomial.append(coeffs[i] + "x^" + i);
-                    }
-                }
+        for (int i = coeffs.length - 1; i >= 0; i--) {
+            if (i == 1) {
+                polynomial.append(coeffs[i] < 0 ? coeffs[i] + "x" : "+" + coeffs[i] + 'x');
+            } else if (i == 0) {
+                polynomial.append(coeffs[i] < 0 ? coeffs[i] : "+" + coeffs[i]);
+            } else {
+                polynomial.append(coeffs[i] < 0 ? coeffs[i] + "x^" + i : "+" + coeffs[i] + "x^" + i);
             }
         }
-        return polynomial.toString();
+        if (polynomial.indexOf("+") == 0) {
+           return polynomial.substring(1);
+        } else {
+            return polynomial.toString();
+        }
     }
 
+    /**
+     * Substitution of X value in polynomial.
+     *
+     * @param x value that is substituted
+     * @return substitution result
+     */
     public double evaluate(double x) {
         double result = 0.0;
         for (int i = 0; i < coeffs.length; i++) {
@@ -52,6 +44,12 @@ public class MyPolynomial {
         return result;
     }
 
+    /**
+     * Addition of two polynomials.
+     *
+     * @param right polynomial which is added to the current.
+     * @return The new polynomial that is the result of addition.
+     */
     public MyPolynomial add(MyPolynomial right) {
         MyPolynomial additionResult;
         if (coeffs.length < right.coeffs.length) {
@@ -74,6 +72,12 @@ public class MyPolynomial {
         return additionResult;
     }
 
+    /**
+     * Multiplication of two polynomials
+     *
+     * @param right polynomial by which the current polynomial is multiplied.
+     * @return The new polynomial that is the result of multiplication.
+     */
     public MyPolynomial multiply(MyPolynomial right) {
         MyPolynomial multiplicationResult = new MyPolynomial(new double[coeffs.length + right.coeffs.length - 1]);
         for (int i = 0; i < coeffs.length; i++)
