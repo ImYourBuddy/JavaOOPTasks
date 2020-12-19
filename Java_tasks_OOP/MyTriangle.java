@@ -49,9 +49,7 @@ public class MyTriangle {
         double firstSide = v1.distance(v2);
         double secondSide = v2.distance(v3);
         double thirdSide = v3.distance(v1);
-        if ((Math.abs(firstSide - secondSide) < 0.000001) && (Math.abs(secondSide - thirdSide) < 0.000001)) {
-            return TriangleType.EQUILATERAL;
-        } else if ((Math.abs(firstSide - secondSide) < 0.000001) || (Math.abs(secondSide - thirdSide) < 0.000001) || (Math.abs(thirdSide - firstSide) < 0.000001)) {
+        if ((Math.abs(firstSide - secondSide) < 0.000001) || (Math.abs(secondSide - thirdSide) < 0.000001) || (Math.abs(thirdSide - firstSide) < 0.000001)) {
             return TriangleType.ISOSCELES;
         } else {
             return TriangleType.SCALENE;
@@ -62,11 +60,10 @@ public class MyTriangle {
      * triangle types
      */
     public enum TriangleType {
-        EQUILATERAL,
         ISOSCELES,
         SCALENE
     }
-    
+
     private void checkVertex(int x1, int y1, int x2, int y2, int x3, int y3) {
         if ((x1 == x2 && y1 == y2) || (x1 == x3 && y1 == y3) || (x2 == x3 && y2 == y3)) {
             throw new IllegalArgumentException("vertices cannot match");
