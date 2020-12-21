@@ -57,11 +57,7 @@ public class MyComplex {
         return (Math.abs(this.real - real) < 0.000001) && (Math.abs(this.imag - imag) < 0.000001);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MyComplex another = (MyComplex) o;
+    public boolean equals(MyComplex another) {
         return equals(another.real, another.imag);
     }
 
