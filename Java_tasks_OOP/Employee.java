@@ -1,5 +1,7 @@
 package com.mycompany.firsttask;
 
+import java.util.Objects;
+
 public class Employee {
     private int id;
     private String firstName;
@@ -63,5 +65,29 @@ public class Employee {
                 ", name=" + firstName + ' ' + lastName +
                 ", salary=" + salary +
                 ']';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        boolean idEquals = (id == employee.id);
+        boolean salaryEquals = (salary == employee.salary);
+        boolean firstNameEquals = (firstName == null && employee.firstName == null)
+                || (firstName != null && firstName.equals(employee.firstName));
+        boolean lastNameEquals = (lastName == null && employee.lastName == null)
+                || (lastName != null && lastName.equals(employee.lastName));
+        return idEquals && salaryEquals && firstNameEquals && lastNameEquals;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + id;
+        result = 31 * result + salary;
+        result = 31 * result + (firstName == null ? 0 : firstName.hashCode());
+        result = 31 * result + (lastName == null ? 0 : lastName.hashCode());
+        return result;
     }
 }
