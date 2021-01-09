@@ -1,5 +1,7 @@
 package com.mycompany.firsttask.triangle;
 
+import java.util.Objects;
+
 public class MyTriangle {
     private MyPoint v1;
     private MyPoint v2;
@@ -54,6 +56,29 @@ public class MyTriangle {
         } else {
             return TriangleType.SCALENE;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyTriangle that = (MyTriangle) o;
+        boolean v1Equals = (v1 == null && that.v1 == null)
+                || (v1 != null && v1.equals(that.v1));
+        boolean v2Equals = (v2 == null && that.v2 == null)
+                || (v2 != null && v2.equals(that.v2));
+        boolean v3Equals = (v3 == null && that.v3 == null)
+                || (v3 != null && v3.equals(that.v3));
+        return v1Equals && v2Equals && v3Equals;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + (v1 == null ? 0 : v1.hashCode());
+        result = 31 * result + (v2 == null ? 0 : v2.hashCode());
+        result = 31 * result + (v3 == null ? 0 : v3.hashCode());
+        return result;
     }
 
     /**
