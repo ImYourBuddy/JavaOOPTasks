@@ -30,7 +30,7 @@ public class MyComplex {
         this.imag = imag;
     }
 
-    public void setValue (double real, double imag) {
+    public void setValue(double real, double imag) {
         this.real = real;
         this.imag = imag;
     }
@@ -39,8 +39,7 @@ public class MyComplex {
     public String toString() {
         if (imag < 0) {
             return "(" + real + imag + "i)";
-        }
-        else {
+        } else {
             return "(" + real + '+' + imag + "i)";
         }
     }
@@ -63,6 +62,7 @@ public class MyComplex {
 
     /**
      * Calculate the magnitude of a complex number
+     *
      * @return The magnitude of a complex number
      */
     public double magnitude() {
@@ -71,6 +71,7 @@ public class MyComplex {
 
     /**
      * Calculate the argument of a complex number
+     *
      * @return The argument of a complex number
      */
     public double argument() {
@@ -79,6 +80,7 @@ public class MyComplex {
 
     /**
      * Addition of two complex numbers. The result is stored in current object.
+     *
      * @param right second complex number that adding to this
      * @return current object (this)
      */
@@ -90,6 +92,7 @@ public class MyComplex {
 
     /**
      * Addition of two complex numbers. The result is stored in new object.
+     *
      * @param right second complex number that adding to this
      * @return new object that is the result of addition
      */
@@ -99,6 +102,7 @@ public class MyComplex {
 
     /**
      * Subtraction of two complex numbers. The result is stored in current object.
+     *
      * @param right second complex number that subtracting to this
      * @return current object (this)
      */
@@ -110,6 +114,7 @@ public class MyComplex {
 
     /**
      * Subtraction of two complex numbers. The result is stored in new object.
+     *
      * @param right second complex number that subtracting to this
      * @return new object that is the result of subtraction
      */
@@ -119,8 +124,9 @@ public class MyComplex {
 
     /**
      * Multiplication of 2 complex numbers. The result is stored in current object.
+     *
      * @param right second complex number that multiplies to this
-     * @return  current object
+     * @return current object
      */
     public MyComplex multiply(MyComplex right) {
         double realPart = real * right.real - imag * right.imag;
@@ -132,6 +138,7 @@ public class MyComplex {
 
     /**
      * Division of 2 complex numbers. The result is stored in current object.
+     *
      * @param right second complex number that is divisible to this
      * @return current object
      */
@@ -145,9 +152,28 @@ public class MyComplex {
 
     /**
      * Finding the conjugate of a complex number
+     *
      * @return The conjugate of the current number (this)
      */
     public MyComplex conjugate() {
         return new MyComplex(real, -imag);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyComplex myComplex = (MyComplex) o;
+        boolean realEquals = (Math.abs(real - myComplex.real) < 0.000001);
+        boolean imagEquals = (Math.abs(imag - myComplex.imag) < 0.000001);
+        return realEquals && imagEquals;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result +  Double.hashCode(real);
+        result = 31 * result + Double.hashCode(imag);
+        return result;
     }
 }
