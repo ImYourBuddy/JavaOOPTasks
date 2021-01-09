@@ -1,5 +1,7 @@
 package com.mycompany.firsttask.shapes;
 
+import java.util.Objects;
+
 public class Circle {
     private double radius = 1.0;
     private String color = "red";
@@ -54,5 +56,24 @@ public class Circle {
      */
     public double getArea () {
         return Math.PI * Math.pow(radius, 2);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Circle circle = (Circle) o;
+        boolean radiusEquals = (Math.abs(radius - circle.radius) < 0.000001);
+        boolean colorEquals = (color == null && circle.color == null)
+                || (color != null && color.equals(circle.color));
+        return radiusEquals && colorEquals;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result +  Double.hashCode(radius);
+        result = 31 * result + (color == null ? 0 : color.hashCode());
+        return result;
     }
 }
